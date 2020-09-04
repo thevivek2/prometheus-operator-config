@@ -1,0 +1,43 @@
+alertmanager:
+  enabled: false
+coreDns:
+  enabled: false
+kubeApiServer:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+kubeDns:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeProxy:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+kubelet:
+  enabled: false
+nodeExporter:
+  enabled: false
+prometheus:
+  serviceMonitor:
+    selfMonitor: false
+  additionalServiceMonitors:
+    - name: "matix-demo"
+      selector: {}
+      namespaceSelector:
+        any: true
+        # matchNames:
+        #  - namespace1
+        #  - namespace2
+      endpoints:
+        - port: http-matix-demo
+          targetPort: 8080
+          path: /actuator/prometheus
+          scheme: http
+
+
+
+
+
