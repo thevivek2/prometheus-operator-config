@@ -1,8 +1,12 @@
 # prometheus for application service
 
 1. Run matrix demo application using helm chart. Most of the services are disabled, we are looking for /actuator/prometheus scrap from application. 
-   helm install stable/prometheus-operator -f config.yaml --namespace=monitoring
-  
+   
+  ---
+    helm install stable/prometheus-operator -f config.yaml --namespace=monitoring
+  ___
+   
+  config file used 
   ---
     alertmanager:
       enabled: false
@@ -35,23 +39,23 @@
              - test1
              - test2
          endpoints:
-           - port: http-matix-demo
+           - port: http-matix-demo 
              targetPort: 8080
              path: /actuator/prometheus
              scheme: http
   ---
    
-   Above, additional service monitor is added to discover service into test1, test2 namespace 
-   endpoint path to scrap is /actuator/prometheus
+   Above, additional service monitor added to discover service from test1, test2 namespace 
+   with endpoint details. 
     
-   This will run the promethus and grafana, since it has been enabled.
+   This will only run the prometheus and grafana, other services has disabled from config.
     
-2. let's install application to namespace test1 and test2, which has /actuator/prometheus exposed. 
+2. let's install application to namespace test1, which has /actuator/prometheus exposed. 
  
   ---
       git clone https://github.com/thevivek2/matrix-demo-helm-chart 
        
-       helm install matrix-demo-helm-chart --namespace test1
+      helm install matrix-demo-helm-chart --namespace test1
       
       kubectl get pods
       NAME                                                   READY   STATUS    RESTARTS   AGE
