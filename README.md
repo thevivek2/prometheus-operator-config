@@ -1,7 +1,7 @@
 # prometheus for application service
 
 1. Run matrix demo application using helm chart. Most of the services are disabled, we are looking for /actuator/prometheus scrap from application. 
-   
+   Lets install this in monitoring namespace. 
   ---
     helm install stable/prometheus-operator -f config.yaml --namespace=monitoring
   ___
